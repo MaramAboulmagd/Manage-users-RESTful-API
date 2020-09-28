@@ -1,7 +1,5 @@
 function login() {
-    var url = 'https://nlg-api-test.herokuapp.com/users/login';
-
-
+    
     // JS Way
     // var http = new XMLHttpRequest();
     // var params = 'email=' + inputEmail.value + '&password=' + inputPassword.value;
