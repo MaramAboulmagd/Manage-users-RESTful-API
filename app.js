@@ -12,7 +12,7 @@ const swaggerOptions={
          title: "Manage Users",
          description: "Add, delete, update and view users",
       },
-     servers: ["http://localhost:3000"]
+     servers: ["http://localhost:3000","https://pyranova.herokuapp.com/"]
    },
    apis: ['app.js']
 }
