@@ -39,6 +39,33 @@ app.get('/listUsers', function (req, res) {
    });
 })
 
+/**
+ * @swagger
+ *  /addUser:
+*     post:
+*        summary: Add a user
+*        parameters:
+*         - in: body
+*           name: user
+*           description: The user to create.
+*           schema:
+*                 type: object
+*                 required:
+*                    - user
+*                    - id
+*                 properties:
+*                    user: 
+*                       type: object
+*                       properties:
+*                          name:
+*                             type: string
+*                          password:
+*                             type: string
+*                          profession:
+*                             type: string
+*                          id:
+*                             type: integer
+ */
 
 
 app.post('/addUser', function (req, res) {
@@ -58,7 +85,7 @@ app.post('/addUser', function (req, res) {
 
 /**
  * @swagger
- *  /id:
+ *  /{id}:
 *     get:
 *        summary: Get a user by ID
 *        parameters:
@@ -79,7 +106,19 @@ app.get('/:id', function (req, res) {
    });
 })
 
-
+/**
+ * @swagger
+ *  /deleteUser/{id}:
+*     delete:
+*        summary: delete a user by ID
+*        parameters:
+*         - in: path
+*           name: id
+*           schema:
+*              type: integer
+*              required: true
+*              description: Numeric ID of the user to get
+ */
 app.delete('/deleteUser/:id', function (req, res) {
    // First read existing users.
    fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
@@ -93,6 +132,41 @@ app.delete('/deleteUser/:id', function (req, res) {
       res.end( JSON.stringify(data));
    });
 })
+
+/**
+ * @swagger
+ *  /editUser/{id}:
+*     patch:
+*        summary: Edit user by id
+*        parameters:
+*         - in: path
+*           name: id
+*           schema:
+*              type: integer
+*              required: true
+*              description: Numeric ID of the user to get
+*       
+*         - in: body
+*           name: user
+*           description: The user to create.
+*           schema:
+*                 type: object
+*                 required:
+*                    - user
+*                    - id
+*                 properties:
+*                    user: 
+*                       type: object
+*                       properties:
+*                          name:
+*                             type: string
+*                          password:
+*                             type: string
+*                          profession:
+*                             type: string
+*                          id:
+*                             type: integer
+ */
 
 app.patch('/editUser/:id', function (req, res) {
    // First read existing users.
