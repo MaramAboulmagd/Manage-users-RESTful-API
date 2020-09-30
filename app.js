@@ -181,22 +181,19 @@ app.patch('/editUser/:id', function (req, res) {
       res.end( JSON.stringify(data));
    });
 })
-app.get('/login.html', function (req, res) {
-    res.sendFile( __dirname + "/" + "views/login.html" );
- })
 
- app.get('/', function (req, res) {
-    res.sendFile( __dirname + "/" + "views/home.html" );
- })
-
- app.get('/Home.html', function (req, res) {
-    res.sendFile( __dirname + "/" + "views/home.html" );
- })
-
- app.post('/Logout.html', function (req, res) {
-    res.sendFile( __dirname + "/" + "views/home.html" );
- })
-
-
+app.post('/', function (req, res) {
+   // First read existing users.
+   fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
+      data = JSON.parse( data );
+      data["user" + req.body.user.id] = req.body.user;
+      fs.writeFile(__dirname + "/" + "users.json", JSON.stringify(data, null, 4), function (err)   {
+         if (err) 
+         return console.log(err);  
+      });
+      console.log( data);
+      res.json( data);
+   });
+})
 
 module.exports=app;
