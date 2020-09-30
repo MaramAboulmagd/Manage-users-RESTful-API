@@ -182,17 +182,10 @@ app.patch('/editUser/:id', function (req, res) {
    });
 })
 
-app.post('/', function (req, res) {
-   // First read existing users.
+app.get('/', function (req, res) {
    fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
-      data = JSON.parse( data );
-      data["user" + req.body.user.id] = req.body.user;
-      fs.writeFile(__dirname + "/" + "users.json", JSON.stringify(data, null, 4), function (err)   {
-         if (err) 
-         return console.log(err);  
-      });
-      console.log( data);
-      res.json( data);
+      console.log( data );
+      res.end( data );
    });
 })
 
