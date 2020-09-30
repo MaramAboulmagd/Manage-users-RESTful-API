@@ -58,11 +58,16 @@ app.post('/addUser', function (req, res) {
 
 /**
  * @swagger
- * /:id:
- *   get:
- *     description: get user with a specific id 
- * Parameters: id
- *   
+ *  /id:
+*     get:
+*        summary: Get a user by ID
+*        parameters:
+*         - in: path
+*           name: id
+*           schema:
+*              type: integer
+*              required: true
+*              description: Numeric ID of the user to get
  */
 app.get('/:id', function (req, res) {
    // First read existing users.
